@@ -1,0 +1,35 @@
+{
+  "name": "trystart",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A no-guilt task initiation tool - for the 10 minutes before productivity",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist",
+    "emulators": "firebase emulators:start",
+    "emulators:export": "firebase emulators:start --export-on-exit=./emulator-data --import=./emulator-data"
+  },
+  "keywords": ["task-initiation", "body-doubling", "focus", "no-guilt"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "firebase": "^10.7.1",
+    "react-i18next": "^13.5.0",
+    "i18next": "^23.7.6"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.8",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "vite-plugin-pwa": "^0.17.4",
+    "gh-pages": "^6.1.0"
+  }
+}

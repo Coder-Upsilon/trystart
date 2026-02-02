@@ -1,0 +1,32 @@
+{
+  "name": "trystart",
+  "short_name": "trystart",
+  "description": "Try starting something",
+  "start_url": "/trystart/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e0f2f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/trystart/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/trystart/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "health"],
+  "shortcuts": [
+    {
+      "name": "Try starting",
+      "url": "/trystart/",
+      "description": "Open trystart"
+    }
+  ]
+}

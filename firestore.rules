@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Active sessions - allow anonymous writes, auto-expire
+    match /activeSessions/{sessionId} {
+      // Allow anyone to create sessions (anonymous or authenticated)
+      allow create: if true;
+
+      // Allow anyone to delete sessions (for cleanup)
+      allow delete: if true;
+
+      // Allow read access for counting active sessions
+      allow read: if true;
+    }
+
+    // Presence count - public read for displaying count
+    match /presenceCount/current {
+      allow read: if true;
+
+      // Only allow writes from server/admin
+      allow write: if false;
+    }
+
+    // Task pool - public read for suggestions
+    match /taskPool/{taskId} {
+      allow read: if true;
+
+      // Only allow writes from admin
+      allow write: if false;
+    }
+  }
+}
