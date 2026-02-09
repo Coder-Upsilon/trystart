@@ -25,6 +25,7 @@ const resources = {
 
       // Presence Mode
       "presence.started": "You've already started",
+      "presence.first": "You're the first trying to start recently",
       "presence.peopleCount": "{{count}} people are also trying to start",
       "presence.peopleCount_plural": "{{count}} people are also trying to start",
       "presence.exit": "I'm putting it down now",
