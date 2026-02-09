@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Timer from './Timer';
 import PresenceIndicator from './PresenceIndicator';
@@ -15,13 +15,27 @@ export default function PresenceMode({ onExit }) {
   const { count, startSession, endSession } = usePresence();
   const [exitState, setExitState] = useState('active'); // 'active' | 'message' | 'done'
   const [exitMessage, setExitMessage] = useState('');
+  const hasExitedRef = useRef(false);
+  const sessionStartedRef = useRef(false);
 
   useEffect(() => {
-    startSession();
-    return () => endSession();
+    // Prevent double-start from StrictMode
+    if (!sessionStartedRef.current) {
+      sessionStartedRef.current = true;
+      startSession();
+    }
+    return () => {
+      if (sessionStartedRef.current) {
+        endSession();
+      }
+    };
   }, []);
 
   const handleExit = () => {
+    // Prevent double-trigger
+    if (hasExitedRef.current) return;
+    hasExitedRef.current = true;
+
     // Pick a random message before showing
     setExitMessage(getRandomExitMessage());
     setExitState('message');
