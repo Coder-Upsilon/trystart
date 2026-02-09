@@ -40,11 +40,6 @@ export default function EntryScreen({ onChoice }) {
             {t('entry.justSit')}
           </button>
         </div>
-
-        {/* Subtle app name at bottom */}
-        <div className="text-center mt-12">
-          <p className="text-xs text-gray-400 font-light">trystart</p>
-        </div>
       </div>
     </div>
   );

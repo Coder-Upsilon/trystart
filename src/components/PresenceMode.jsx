@@ -13,7 +13,7 @@ import { getRandomExitMessage } from '../utils/exitMessages';
 export default function PresenceMode({ onExit }) {
   const { t } = useTranslation();
   const { count, startSession, endSession } = usePresence();
-  const [showExitMessage, setShowExitMessage] = useState(false);
+  const [exitState, setExitState] = useState('active'); // 'active' | 'message' | 'done'
   const [exitMessage, setExitMessage] = useState('');
 
   useEffect(() => {
@@ -24,20 +24,30 @@ export default function PresenceMode({ onExit }) {
   const handleExit = () => {
     // Pick a random message before showing
     setExitMessage(getRandomExitMessage());
-    setShowExitMessage(true);
+    setExitState('message');
     endSession();
 
-    // Wait for fade-in-out animation to complete (3.5s) + buffer, then exit
+    // Wait for fade-in-out animation to complete (3.5s), then go blank
     setTimeout(() => {
-      onExit();
-    }, 4000);
+      setExitState('done');
+      // Small delay before transitioning to entry
+      setTimeout(() => {
+        onExit();
+      }, 100);
+    }, 3500);
   };
 
-  if (showExitMessage) {
+  // After exit animation, render nothing briefly
+  if (exitState === 'done') {
+    return <div className="min-h-screen" />;
+  }
+
+  // Show exit message with animation
+  if (exitState === 'message') {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="max-w-md w-full text-center">
-          <p className="text-2xl font-light text-gray-700 animate-fade-in-out">
+          <p className="text-2xl font-light text-gray-700 animate-fade-in-out" key="exit-message">
             {exitMessage}
           </p>
         </div>

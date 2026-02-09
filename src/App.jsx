@@ -59,7 +59,7 @@ export default function App() {
 
   // Render current screen
   return (
-    <div className="app">
+    <div className="app relative min-h-screen">
       {screen === 'entry' && (
         <EntryScreen onChoice={handleEntryChoice} />
       )}
@@ -78,6 +78,11 @@ export default function App() {
       {screen === 'presence' && (
         <PresenceMode onExit={handleExit} />
       )}
+
+      {/* Copyright footer */}
+      <footer className="fixed bottom-4 left-0 right-0 text-center pointer-events-none">
+        <p className="text-xs text-gray-400">© 2026 Coder Upsilon</p>
+      </footer>
     </div>
   );
 }
